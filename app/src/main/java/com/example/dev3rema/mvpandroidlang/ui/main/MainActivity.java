@@ -19,7 +19,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
 
-    private static final int REQUEST_CODE = 1023;
+    private static final int REQUEST_CODE = 1022;
     private FloatingActionButton mFab;
     private RecyclerView mainRecyclerView;
 
