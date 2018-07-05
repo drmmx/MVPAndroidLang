@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MVPAndroidLang</string>
+    <string name="add_lang_title">Did you know Android lang?</string>
+    <string name="enter_description">Enter description</string>
+    <string name="enter_lang_name">Enter lang name</string>
+    <string name="save">Save</string>
+</resources>
