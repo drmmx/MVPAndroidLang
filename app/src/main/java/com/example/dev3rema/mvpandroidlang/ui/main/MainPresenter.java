@@ -40,7 +40,6 @@ public class MainPresenter implements MainContract.Presenter {
         mRepository.deleteLang(number, new AppDataSource.SavedCallback() {
             @Override
             public void onResult() {
-                // TODO
                 getData();
             }
         });

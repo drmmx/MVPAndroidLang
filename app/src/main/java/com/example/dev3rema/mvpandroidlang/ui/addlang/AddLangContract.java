@@ -15,12 +15,11 @@ public interface AddLangContract {
 
         void enterValues(Lang lang);
 
-        void setData(List<Lang> langs);
     }
 
     interface Presenter extends AppBasePresenter {
 
-        void addLang(String name, String description);
+        void saveLang(Lang lang);
 
     }
 

@@ -24,8 +24,7 @@ public class AddLangPresenter implements AddLangContract.Presenter {
     }
 
     @Override
-    public void addLang(String name, String description) {
-        Lang lang = new Lang(name, description);
+    public void saveLang(Lang lang) {
         mRepository.saveLang(lang);
     }
 
