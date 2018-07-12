@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void setData(List<Lang> langs) {
         LangAdapter adapter = new LangAdapter(this, langs, mPresenter);
-
+        adapter.notifyDataSetChanged();
         RecyclerView.LayoutManager layoutManager =
                 new GridLayoutManager(this, 1);
         mainRecyclerView.setLayoutManager(layoutManager);
