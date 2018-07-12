@@ -11,7 +11,7 @@ import com.example.dev3rema.mvpandroidlang.data.entity.Lang;
 import java.util.List;
 
 @Dao
-public interface PhoneNumberDao {
+public interface LangDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void saveLang(Lang lang);
@@ -20,5 +20,8 @@ public interface PhoneNumberDao {
     void deleteLang(Lang lang);
 
     @Query("SELECT * FROM android_lang")
-    List<Lang> getNumbers();
+    List<Lang> getLangs();
+
+    @Query("SELECT * FROM android_lang WHERE id = :id")
+    Lang getLangById(int id);
 }

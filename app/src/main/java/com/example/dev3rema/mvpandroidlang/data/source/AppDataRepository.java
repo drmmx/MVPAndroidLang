@@ -43,19 +43,24 @@ public class AppDataRepository implements AppDataSource {
     }
 
     @Override
-    public void getLang(final GetLangsCallback callback) {
+    public void getAllLangs(final GetAllLangsCallback callback) {
 
-        mLocal.getLang(new GetLangsCallback() {
+        mLocal.getAllLangs(new GetAllLangsCallback() {
             @Override
-            public void onLoaded(List<Lang> numbers) {
-                callback.onLoaded(numbers);
+            public void onLoaded(List<Lang> langs) {
+                callback.onLoaded(langs);
             }
         });
     }
 
     @Override
-    public void saveLang(Lang number, final SavedCallback callback) {
-        mLocal.saveLang(number, new SavedCallback() {
+    public void saveLang(Lang lang) {
+        mLocal.saveLang(lang);
+    }
+
+    @Override
+    public void deleteLang(Lang lang, final SavedCallback callback) {
+        mLocal.deleteLang(lang, new SavedCallback() {
             @Override
             public void onResult() {
                 callback.onResult();
@@ -64,11 +69,11 @@ public class AppDataRepository implements AppDataSource {
     }
 
     @Override
-    public void deleteLang(Lang number, final SavedCallback callback) {
-        mLocal.deleteLang(number, new SavedCallback() {
+    public void getLangById(final int id, final GetLangByIdCallback callback) {
+        mLocal.getLangById(id, new GetLangByIdCallback() {
             @Override
-            public void onResult() {
-                callback.onResult();
+            public void onLoaded(Lang lang) {
+                callback.onLoaded(lang);
             }
         });
     }

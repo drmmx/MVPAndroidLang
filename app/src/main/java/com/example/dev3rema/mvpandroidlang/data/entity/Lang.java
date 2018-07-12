@@ -20,6 +20,7 @@ public class Lang {
     @Ignore
     public Lang(String name, String description) {
         this.name = name;
+        this.description = description;
     }
 
     /**
@@ -28,6 +29,7 @@ public class Lang {
     public Lang(int id, String name, String description) {
         this.id = id;
         this.name = name;
+        this.description = description;
     }
 
     public int getId() {

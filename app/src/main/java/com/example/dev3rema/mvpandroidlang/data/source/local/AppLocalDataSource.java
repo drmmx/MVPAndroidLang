@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.example.dev3rema.mvpandroidlang.data.entity.Lang;
 import com.example.dev3rema.mvpandroidlang.data.source.AppDataSource;
-import com.example.dev3rema.mvpandroidlang.data.source.local.dao.PhoneNumberDao;
+import com.example.dev3rema.mvpandroidlang.data.source.local.dao.LangDao;
 import com.example.dev3rema.mvpandroidlang.util.AppExecutors;
 
 import java.util.List;
@@ -17,27 +17,27 @@ public class AppLocalDataSource implements AppDataSource {
 
     private static volatile AppLocalDataSource INSTANCE;
 
-    private PhoneNumberDao mPhone;
+    private LangDao mLangDao;
 
     private AppExecutors mAppExecutors;
 
     // Prevent direct instantiation
     private AppLocalDataSource(@NonNull AppExecutors appExecutors,
-                               @NonNull PhoneNumberDao phoneNumberDao) {
+                               @NonNull LangDao langDao) {
         mAppExecutors = appExecutors;
-        mPhone = phoneNumberDao;
+        mLangDao = langDao;
     }
 
     /**
      * Singleton pattern
      */
     public static AppLocalDataSource getInstance(@NonNull AppExecutors appExecutors,
-                                                 @NonNull PhoneNumberDao phoneNumberDao) {
+                                                 @NonNull LangDao langDao) {
         if (INSTANCE == null) {
             synchronized (AppLocalDataSource.class) {
                 if (INSTANCE == null) {
                     INSTANCE = new AppLocalDataSource(appExecutors,
-                            phoneNumberDao);
+                            langDao);
                 }
             }
         }
@@ -46,15 +46,15 @@ public class AppLocalDataSource implements AppDataSource {
     }
 
     @Override
-    public void getLang(final GetLangsCallback callback) {
+    public void getAllLangs(final GetAllLangsCallback callback) {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                final List<Lang> numbers = mPhone.getNumbers();
+                final List<Lang> langs = mLangDao.getLangs();
                 mAppExecutors.mainThread().execute(new Runnable() {
                     @Override
                     public void run() {
-                        callback.onLoaded(numbers);
+                        callback.onLoaded(langs);
                     }
                 });
             }
@@ -63,17 +63,11 @@ public class AppLocalDataSource implements AppDataSource {
     }
 
     @Override
-    public void saveLang(final Lang number, final SavedCallback callback) {
+    public void saveLang(final Lang lang) {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                mPhone.saveLang(number);
-                mAppExecutors.mainThread().execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        callback.onResult();
-                    }
-                });
+                mLangDao.saveLang(lang);
             }
         };
         mAppExecutors.diskIO().execute(runnable);
@@ -84,11 +78,28 @@ public class AppLocalDataSource implements AppDataSource {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                mPhone.deleteLang(number);
+                mLangDao.deleteLang(number);
                 mAppExecutors.mainThread().execute(new Runnable() {
                     @Override
                     public void run() {
                         callback.onResult();
+                    }
+                });
+            }
+        };
+        mAppExecutors.diskIO().execute(runnable);
+    }
+
+    @Override
+    public void getLangById(final int id, final GetLangByIdCallback callback) {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                final Lang lang = mLangDao.getLangById(id);
+                mAppExecutors.mainThread().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.onLoaded(lang);
                     }
                 });
             }

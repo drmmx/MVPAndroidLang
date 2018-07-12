@@ -6,7 +6,7 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 import com.example.dev3rema.mvpandroidlang.data.entity.Lang;
-import com.example.dev3rema.mvpandroidlang.data.source.local.dao.PhoneNumberDao;
+import com.example.dev3rema.mvpandroidlang.data.source.local.dao.LangDao;
 
 
 /**
@@ -35,5 +35,5 @@ public abstract class AppDatabase extends RoomDatabase {
         }
     }
 
-    public abstract PhoneNumberDao phoneNumberDao();
+    public abstract LangDao langDao();
 }

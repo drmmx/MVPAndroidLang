@@ -10,6 +10,8 @@ public interface MainContract {
 
     interface View extends AppBaseView<Presenter> {
         void setData(List<Lang> langs);
+
+        void startAddLang(int id);
     }
 
     interface Presenter extends AppBasePresenter {

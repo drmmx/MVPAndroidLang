@@ -27,7 +27,7 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void getData() {
-        mRepository.getLang(new AppDataSource.GetLangsCallback() {
+        mRepository.getAllLangs(new AppDataSource.GetAllLangsCallback() {
             @Override
             public void onLoaded(List<Lang> langs) {
                 mView.setData(langs);

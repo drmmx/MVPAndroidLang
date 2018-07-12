@@ -12,6 +12,9 @@ import java.util.List;
 public interface AddLangContract {
 
     interface View extends AppBaseView<Presenter> {
+
+        void enterValues(Lang lang);
+
         void setData(List<Lang> langs);
     }
 

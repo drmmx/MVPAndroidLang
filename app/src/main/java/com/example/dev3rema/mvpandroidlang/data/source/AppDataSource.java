@@ -7,17 +7,23 @@ import java.util.List;
 
 public interface AppDataSource {
 
-    void getLang(GetLangsCallback callback);
+    void getAllLangs(GetAllLangsCallback callback);
 
-    void saveLang(Lang lang, SavedCallback callback);
+    void saveLang(Lang lang);
 
     void deleteLang(Lang lang, SavedCallback callback);
+
+    void getLangById(int id, GetLangByIdCallback callback);
 
     interface SavedCallback {
         void onResult();
     }
 
-    interface GetLangsCallback {
+    interface GetLangByIdCallback {
+        void onLoaded(Lang lang);
+    }
+
+    interface GetAllLangsCallback {
         void onLoaded(List<Lang> langs);
     }
 }

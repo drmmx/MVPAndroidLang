@@ -39,11 +39,10 @@ public class LangAdapter extends RecyclerView.Adapter<LangAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        holder.langTextView.setText(
-                mLangs.get(holder.getAdapterPosition()).getName()
+        holder.langTextView.setText(mLangs.get(position).getName()
         );
 
-        holder.descriptionTextView.setText(mLangs.get(holder.getAdapterPosition()).getDescription());
+        holder.descriptionTextView.setText(mLangs.get(position).getDescription());
 
         holder.deleteImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +51,13 @@ public class LangAdapter extends RecyclerView.Adapter<LangAdapter.ViewHolder> {
                 mPresenter.deleteLang(
                         mLangs.get(holder.getAdapterPosition())
                 );
+            }
+        });
+
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mView.startAddLang(mLangs.get(holder.getAdapterPosition()).getId());
             }
         });
     }
@@ -63,12 +69,15 @@ public class LangAdapter extends RecyclerView.Adapter<LangAdapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
+        View view;
+
         TextView langTextView;
         TextView descriptionTextView;
         ImageView deleteImageView;
 
         ViewHolder(View itemView) {
             super(itemView);
+            view = itemView;
             langTextView = itemView.findViewById(R.id.phoneTextView);
             deleteImageView = itemView.findViewById(R.id.deleteImageView);
             descriptionTextView = itemView.findViewById(R.id.descriptionTextView);

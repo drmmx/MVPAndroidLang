@@ -15,7 +15,7 @@ public class AppDataInjector {
         return AppDataRepository.getInstance(
                 AppLocalDataSource.getInstance(
                         new AppExecutors(),
-                        database.phoneNumberDao()
+                        database.langDao()
                 )
         );
     }

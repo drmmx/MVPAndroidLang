@@ -5,8 +5,6 @@ import android.support.annotation.NonNull;
 import com.example.dev3rema.mvpandroidlang.data.entity.Lang;
 import com.example.dev3rema.mvpandroidlang.data.source.AppDataSource;
 
-import java.util.List;
-
 /**
  * Created by dev3rema
  */
@@ -16,25 +14,34 @@ public class AddLangPresenter implements AddLangContract.Presenter {
 
     private final AddLangContract.View mView;
 
-    public AddLangPresenter(@NonNull AppDataSource repository,
+    private String mLangId;
+
+    public AddLangPresenter(String langId, @NonNull AppDataSource repository,
                          @NonNull AddLangContract.View view) {
+        mLangId = langId;
         mRepository = repository;
         mView = view;
     }
 
     @Override
     public void addLang(String name, String description) {
-        Lang lang1 = new Lang(name, description);
-        mRepository.saveLang(lang1, new AppDataSource.SavedCallback() {
-            @Override
-            public void onResult() {
-                // TODO: refresh adapter
-            }
-        });
+        Lang lang = new Lang(name, description);
+        mRepository.saveLang(lang);
     }
 
     @Override
     public void start() {
-
+        if (mLangId != null) {
+            mRepository.getLangById(
+                    Integer.valueOf(mLangId), new AppDataSource.GetLangByIdCallback() {
+                        @Override
+                        public void onLoaded(Lang lang) {
+                            mView.enterValues(lang);
+                        }
+                    });
+        } else {
+            Lang lang = new Lang("", "");
+            mView.enterValues(lang);
+        }
     }
 }
