@@ -5,7 +5,6 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import com.example.dev3rema.mvpandroidlang.R;
 import com.example.dev3rema.mvpandroidlang.data.AppDataInjector;
@@ -19,7 +18,7 @@ public class AddLangActivity extends AppCompatActivity implements AddLangContrac
 
     private TextInputEditText mNameLang;
     private TextInputEditText mDescriptionLang;
-    private Button mButton;
+    private MaterialButton mButton;
 
     private Lang mLang;
 
