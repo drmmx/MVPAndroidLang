@@ -16,6 +16,9 @@ public interface LangDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void saveLang(Lang lang);
 
+    @Insert
+    void insertAll(Lang... langs);
+
     @Delete
     void deleteLang(Lang lang);
 
