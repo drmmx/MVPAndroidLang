@@ -39,8 +39,7 @@ public class LangAdapter extends RecyclerView.Adapter<LangAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        holder.langTextView.setText(mLangs.get(position).getName()
-        );
+        holder.langTextView.setText(mLangs.get(position).getName());
 
         holder.descriptionTextView.setText(mLangs.get(position).getDescription());
 
