@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         LangAdapter adapter = new LangAdapter(this, langs, mPresenter);
         adapter.notifyDataSetChanged();
         RecyclerView.LayoutManager layoutManager =
-                new GridLayoutManager(this, 1);
+                new LinearLayoutManager(this);
         mainRecyclerView.setLayoutManager(layoutManager);
         mainRecyclerView.setAdapter(adapter);
     }

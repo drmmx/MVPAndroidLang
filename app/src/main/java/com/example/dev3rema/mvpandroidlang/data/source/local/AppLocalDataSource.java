@@ -74,11 +74,11 @@ public class AppLocalDataSource implements AppDataSource {
     }
 
     @Override
-    public void deleteLang(final Lang number, final SavedCallback callback) {
+    public void deleteLang(final Lang lang, final SavedCallback callback) {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                mLangDao.deleteLang(number);
+                mLangDao.deleteLang(lang);
                 mAppExecutors.mainThread().execute(new Runnable() {
                     @Override
                     public void run() {

@@ -3,6 +3,7 @@ package com.example.dev3rema.mvpandroidlang.data.source;
 import android.support.annotation.NonNull;
 
 import com.example.dev3rema.mvpandroidlang.data.entity.Lang;
+import com.example.dev3rema.mvpandroidlang.data.source.local.AppLocalDataSource;
 
 import java.util.List;
 
@@ -13,10 +14,10 @@ public class AppDataRepository implements AppDataSource {
 
     private static AppDataRepository INSTANCE = null;
 
-    private final AppDataSource mLocal;
+    private final AppLocalDataSource mLocal;
 
     // Prevent direct instantiation.
-    private AppDataRepository(@NonNull AppDataSource appLocalDataSource) {
+    private AppDataRepository(@NonNull AppLocalDataSource appLocalDataSource) {
         mLocal = appLocalDataSource;
     }
 
@@ -27,7 +28,7 @@ public class AppDataRepository implements AppDataSource {
      * @param appLocalDataSource the device storage data source
      * @return the {@link AppDataRepository} instance
      */
-    public static AppDataRepository getInstance(AppDataSource appLocalDataSource) {
+    public static AppDataRepository getInstance(AppLocalDataSource appLocalDataSource) {
 
         if (INSTANCE == null) {
             INSTANCE = new AppDataRepository(appLocalDataSource);

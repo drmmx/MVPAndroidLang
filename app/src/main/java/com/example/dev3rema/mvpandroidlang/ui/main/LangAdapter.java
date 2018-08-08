@@ -46,7 +46,6 @@ public class LangAdapter extends RecyclerView.Adapter<LangAdapter.ViewHolder> {
         holder.deleteImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: click
                 mPresenter.deleteLang(
                         mLangs.get(holder.getAdapterPosition())
                 );
