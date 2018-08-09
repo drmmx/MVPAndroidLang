@@ -36,8 +36,8 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
-    public void deleteLang(Lang number) {
-        mRepository.deleteLang(number, new AppDataSource.SavedCallback() {
+    public void deleteLang(Lang lang) {
+        mRepository.deleteLang(lang, new AppDataSource.SavedCallback() {
             @Override
             public void onResult() {
                 getData();
